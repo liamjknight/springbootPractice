@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class HelloController {
 	private final PersonService personService;
@@ -16,9 +18,7 @@ public class HelloController {
 	}
 
 	@GetMapping("/")
-	public String index() {
-		return "Greetings from Spring Boot!";
-	}
+	public List<Person> index() { return personService.getAll(); }
 
 	@GetMapping("/person/{id}")
 	public Person getPerson(@PathVariable int id){

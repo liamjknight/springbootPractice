@@ -2,7 +2,11 @@ package com.knightly.practice.dao;
 
 import com.knightly.practice.model.Person;
 
+import java.util.List;
+
 public interface PersonDao {
+
+    List<Person> getAll();
 
     Person getPerson(int id);
 
