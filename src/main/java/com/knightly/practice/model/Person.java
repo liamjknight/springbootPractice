@@ -23,6 +23,8 @@ public class Person {
         this.SSN = SSN;
     }
 
+    public int getId() { return id; }
+
     public String getName() {
         return name;
     }
@@ -34,6 +36,8 @@ public class Person {
     public String getAddress() {
         return address;
     }
+
+    public long getSSN() { return SSN; }
 
     public void setId(int id) {
         this.id = id;

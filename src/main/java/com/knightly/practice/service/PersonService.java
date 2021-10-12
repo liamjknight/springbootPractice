@@ -19,23 +19,23 @@ public class PersonService {
 
     public List<Person> getAll() { return personDao.getAll(); }
 
-    public Person getPerson(int id) {
-        return personDao.getPerson(id);
+    public List<Person> getPersonById(int id) {
+        return personDao.getPersonById(id);
     }
 
-    public Person getPerson(String name) {
-        return personDao.getPerson(name);
+    public List<Person> getPersonByName(String name) {
+        return personDao.getPersonByName(name);
     }
 
-    public int postPerson(Person person) {
-        return personDao.postPerson(person);
+    public void postPerson(Person person) {
+        personDao.postPerson(person);
     }
 
-    public int putPerson(int id, Person person) {
-        return personDao.putPerson(id, person);
+    public void putPerson(int id, Person person) {
+        personDao.putPerson(id, person);
     }
 
-    public int deletePerson(int id) {
-        return personDao.deletePerson(id);
+    public void deletePerson(int id) {
+        personDao.deletePerson(id);
     }
 }

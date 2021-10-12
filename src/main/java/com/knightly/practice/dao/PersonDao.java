@@ -8,14 +8,14 @@ public interface PersonDao {
 
     List<Person> getAll();
 
-    Person getPerson(int id);
+    List<Person> getPersonById(int id);
 
-    Person getPerson(String name);
+    List<Person> getPersonByName(String name);
 
-    int postPerson(Person person);
+    void postPerson(Person person);
 
-    int putPerson(int id, Person person);
+    void putPerson(int id, Person person);
 
-    int deletePerson(int id);
+    void deletePerson(int id);
 
 }

@@ -20,28 +20,28 @@ public class HelloController {
 	@GetMapping("/")
 	public List<Person> index() { return personService.getAll(); }
 
-	@GetMapping("/person/{id}")
-	public Person getPerson(@PathVariable int id){
-		return personService.getPerson(id);
+	@GetMapping("/person/id/{id}")
+	public List<Person> getPersonById(@PathVariable int id){
+		return personService.getPersonById(id);
 	}
 
-	@GetMapping("/person/{name}")
-	public Person getPerson(@PathVariable String name){
-		return personService.getPerson(name);
+	@GetMapping("/person/name/{name}")
+	public List<Person> getPersonByName(@PathVariable String name){
+		return personService.getPersonByName(name);
 	}
-
+//TODO: Fix issue where posting throws 415 wrong media format
 	@PostMapping("/person")
-	public int postPerson(@RequestBody Person person){
-		return personService.postPerson(person);
+	public void postPerson(@RequestBody Person person){
+		personService.postPerson(person);
 	}
-
+//TODO: Fix issue where putting throws 415 wrong media format
 	@PutMapping("/person/{id}")
-	public int putPerson(@PathVariable int id, @RequestBody Person person){
-		return personService.putPerson(id, person);
+	public void putPerson(@PathVariable int id, @RequestBody Person person){
+		personService.putPerson(id, person);
 	}
 
 	@DeleteMapping("/person/{id}")
-	public int putPerson(@PathVariable int id){
-		return personService.deletePerson(id);
+	public void putPerson(@PathVariable int id){
+		personService.deletePerson(id);
 	}
 }

@@ -27,42 +27,74 @@ public class PersonSqlDao implements PersonDao{
 
     @Override
     public List<Person> getAll() {
-        List<Person> results = new ArrayList<>();
+        List<Person> result = new ArrayList<>();
         String sql = "SELECT * FROM Person";
 
         SqlRowSet response = jdbcTemplate.queryForRowSet(sql);
 
-        while (response.next()){
+        while (response.next()) {
             Person person = mapToPerson(response);
-            results.add(person);
+            result.add(person);
         }
 
-        return results;
+        return result;
     }
 
     @Override
-    public Person getPerson(int id) {
-        return null;
+    public List<Person> getPersonById(int id) {
+        List<Person> result = new ArrayList<>();
+        String sql = "SELECT * FROM Person WHERE id = ?";
+
+        SqlRowSet response = jdbcTemplate.queryForRowSet(sql, id);
+
+        while (response.next()) {
+            Person person = mapToPerson(response);
+            result.add(person);
+        }
+
+        return result;
     }
 
     @Override
-    public Person getPerson(String name) {
-        return null;
+    public List<Person> getPersonByName(String name) {
+        List<Person> result = new ArrayList<>();
+        String sql = "SELECT * FROM Person WHERE name = ?";
+
+        SqlRowSet response = jdbcTemplate.queryForRowSet(sql, name);
+
+        while (response.next()) {
+            Person person = mapToPerson(response);
+            result.add(person);
+        }
+
+        return result;
     }
 
     @Override
-    public int postPerson(Person person) {
-        return 0;
+    public void postPerson(Person person) {
+        String sql = "INSERT INTO Person (name, age, address, ssn)" +
+                     "Values (?, ?, ?, ?)";
+
+        jdbcTemplate.update(sql, person.getName(), person.getAge(), person.getAddress(), person.getId());
     }
 
     @Override
-    public int putPerson(int id, Person person) {
-        return 0;
+    public void putPerson(int id, Person person) {
+        String sql = "UPDATE Person SET" +
+                     "name = ?," +
+                     "age = ?," +
+                     "address = ?," +
+                     "ssn = ?" +
+                     "WHERE id == ?";
+
+        jdbcTemplate.update(sql, person.getName(), person.getAge(), person.getAddress(), person.getId(), id);
     }
 
     @Override
-    public int deletePerson(int id) {
-        return 0;
+    public void deletePerson(int id) {
+        String sql = "DELETE FROM Person WHERE id = ?";
+
+        jdbcTemplate.update(sql, id);
     }
 
     private Person mapToPerson(SqlRowSet response) {
